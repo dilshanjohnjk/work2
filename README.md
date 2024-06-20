@@ -1,4 +1,4 @@
-all corections in front end
+###all corections in front end
 add controller folder with authview.py cart.py
 ad auth folder with login and register html
 in navbar.html add dropdown code
