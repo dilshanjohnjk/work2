@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6ixty_wings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            background: linear-gradient(to bottom, #444444 5%, #222222 50%, black 100%) !important;
+        }
+        .navbar-brand img {
+            height: 60px;
+            width:80px;
+            margin-top: -5px;
+            margin-left:
+            
+        }
+        .nav-link {
+            font-size: 18px; /* Adjust the font size as needed */
+            color: orange; !important; /* Light grey color */
+            margin-right: 20px; /* Increase space between links */
+        }
+        .nav-link:hover {
+            color: #fff !important; /* White color on hover */
+        }
+        .profile-icon {
+            height: 50px;
+            margin-top: -10px; /* Adjust the height as needed */
+        }
+        .navbar-nav {
+            margin-left: auto; /* Move the navbar items to the right */
+        }
+        .profile-nav-item {
+            margin-left: 20px; /* Add margin to the profile icon */
+        }
+        .dropdown-menu {
+            background-color: #333; /* Dropdown background color */
+            border: none; /* Remove border */
+        }
+        .dropdown-item {
+            color: #f2f2f2; /* Light grey text color */
+        }
+        .dropdown-item:hover {
+            background-color: #444; /* Darker background on hover */
+            color: #fff; /* White text on hover */
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="main.html">
+                <img src="{% static 'Images/logo.png' %}" alt="6ixty_wings">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link"  href="main.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="collections.html">Category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="location.html">Location</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="contact.html">
+                      <i class="bi bi-bag-check"></i>
+                      </a>
+                  </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="bi bi-person-lines-fill"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="view_profile.html">View Profile</a></li>
+                            <li><a class="dropdown-item" href="login">Login</a></li>
+                            <li><a class="dropdown-item" href="register.html">Signup</a></li>
+                            {% if request.user.is_authenticated %}
+                                <li><a class="dropdown-item" href="logout">logout</a></li>
+    
+                            {% endif%}
+                            <li><a class="dropdown-item" href="favourite.html">Favourite</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
