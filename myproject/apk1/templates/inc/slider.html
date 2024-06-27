@@ -1,0 +1,124 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiper Zoom Out Carousel with Images and Autoplay</title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        /* Custom styles for the zoom effect */
+        .swiper-container {
+            position: relative;
+            padding: 20px 0; /* Add padding to create space between the images and the hr */
+            margin-bottom: 20px; /* Adjust this to create space between the slider and the second hr */
+        }
+        .swiper-slide {
+            transition: transform 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .swiper-slide img {
+          width: 100%;
+          height: 170px;
+          border-radius: 15px; /* Rounded corners */
+          border: 2px solid #ffcc00; /* Colored border */
+          object-fit: cover; /* Ensures images cover the container without being cropped */
+          object-position: center;
+          transition: transform 0.5s;
+        }
+        .swiper-slide-active img {
+            transform: scale(1.2);
+        }
+        .swiper-slide img {
+            transform: scale(0.8);
+        }
+        .swiper-pagination {
+            position: relative;
+            bottom: auto; /* Reset the bottom positioning */
+            margin-top: 10px; /* Adjust this to control the space above the pagination */
+            text-align: center;
+        }
+        .swiper-pagination-bullet {
+            background: white; /* Change non-active pagination bullet color to white */
+        }
+        .swiper-pagination-bullet-active {
+            background: orange !important; /* Change active pagination bullet color to orange */
+            
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: orange; /* Change navigation arrows color to orange */
+            opacity: 0; /* Make navigation arrows invisible by default */
+            transition: opacity 0.3s;
+        }
+        .swiper-container:hover .swiper-button-next,
+        .swiper-container:hover .swiper-button-prev {
+            opacity: 1; /* Make navigation arrows visible on hover */
+        }
+        hr {
+            margin: 0;
+            border: 0; 
+            height: 2px; 
+            background: linear-gradient(to right, #fff, #fff); 
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <hr>
+    <br>
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="{% static 'uploads/slider3.jpg' %}" alt="Slide 1"></div>
+            <div class="swiper-slide"><img src="{% static 'uploads/slider1.jpg' %}" alt="Slide 2"></div>
+            <div class="swiper-slide"><img src="{% static 'uploads/slider3.jpg' %}" alt="Slide 3"></div>
+            <div class="swiper-slide"><img src="{% static 'uploads/slider1.jpg' %}" alt="Slide 4"></div>
+            <div class="swiper-slide"><img src="{% static 'uploads/slider3.jpg' %}" alt="Slide 5"></div>
+        </div>
+        <!-- Add Navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+    <hr>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            centeredSlides: true,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            on: {
+                slideChangeTransitionStart: function () {
+                    var swiperSlides = document.querySelectorAll('.swiper-slide img');
+                    swiperSlides.forEach(slide => slide.style.transform = 'scale(0.8)');
+                    var activeSlide = document.querySelector('.swiper-slide-active img');
+                    activeSlide.style.transform = 'scale(1.2)';
+                }
+            }
+        });
+
+        // Initial scale settings
+        document.querySelectorAll('.swiper-slide img').forEach(slide => slide.style.transform = 'scale(0.8)');
+        document.querySelector('.swiper-slide-active img').style.transform = 'scale(1.2)';
+    </script>
+</body>
+</html>
